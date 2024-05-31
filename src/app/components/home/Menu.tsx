@@ -150,6 +150,7 @@ const Menu: React.FC = () => {
                     ))}
                   </tr>
                 </thead>
+                
                 <tbody className={style.tableMain}>
                   {tableData.data.map((row, rowIndex) => (
                     <tr key={rowIndex} className={style.tr}>

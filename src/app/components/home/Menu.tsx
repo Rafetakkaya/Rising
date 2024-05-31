@@ -6,12 +6,15 @@ import { paragraphs } from "@/app/constant/constant";
 import Graphics from "./Graphics";
 interface TableRow {
   ipcount: number;
-  // Diğer alanlar da buraya eklenebilir
+
 }
 
 interface TableData {
   data: TableRow[];
 }
+
+
+
 
 const rowDropdowns: { [key: number]: boolean } = {
   1: true,
@@ -20,7 +23,8 @@ const rowDropdowns: { [key: number]: boolean } = {
 };
 
 const Menu: React.FC = () => {
-  const [tableData, setTableData] = useState<TableData | null>(null);
+  
+  const [tableData, setTableData] = useState<TableData>({ data: [] });
 
   const [packageContent, setPackageContent] = useState<any>(null);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
@@ -67,7 +71,7 @@ const Menu: React.FC = () => {
   
   const handleDropdownChange = (e: React.ChangeEvent<HTMLSelectElement>, rowIndex: number) => {
     const { value } = e.target;
-    if (tableData && Array.isArray(tableData.data) && tableData.data.length > 0) {
+    if (Array.isArray(tableData.data) && tableData.data.length > 0) {
       const ipcount = tableData.data[rowIndex].ipcount;
       console.log(`Number of IP :`, ipcount);
     } else {
@@ -150,7 +154,7 @@ const Menu: React.FC = () => {
                     ))}
                   </tr>
                 </thead>
-                
+
                 <tbody className={style.tableMain}>
                   {tableData.data.map((row, rowIndex) => (
                     <tr key={rowIndex} className={style.tr}>

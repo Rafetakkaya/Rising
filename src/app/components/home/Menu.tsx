@@ -7,8 +7,16 @@ import Graphics from "./Graphics";
 
 
 interface TableRow {
-  ipcount: number;
-  // Diğer özellikler...
+  type: string;
+  location: string;
+  rental: string;
+  ipcount: string;
+  purpose: string;
+  date: string;
+}
+
+interface TableData {
+  data: TableRow[];
 }
 
 
@@ -21,7 +29,7 @@ const rowDropdowns: { [key: number]: boolean } = {
 
 const Menu: React.FC = () => {
   
-  const [tableData, setTableData] = useState<TableRow[]>([]);
+  const [tableData, setTableData] = useState<TableData>({ data: [] });
 
 
   const [packageContent, setPackageContent] = useState<any>(null);

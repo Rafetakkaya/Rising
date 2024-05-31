@@ -154,7 +154,7 @@ const Menu: React.FC = () => {
             {paragraphs.transcactionHistory.map((item, index) => (
               <h3 key={index}>{item.text}</h3>
             ))}
-            {(tableData && tableData.data) ? (
+            {tableData?.data ? (
               <table style={{ borderCollapse: "collapse", width: "100%" }}>
                 <thead>
                   <tr>

@@ -1,0 +1,38 @@
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.loginHead {
+  width: 300px;
+  height: 200px;
+  background: rgba(241, 113, 2, 0.2); /* Yarı saydam beyaz */
+  border-radius: 10px; /* Köşeleri yuvarlama */
+  backdrop-filter: blur(10px); /* Arka planı blur yapma */
+  -webkit-backdrop-filter: blur(10px); /* Safari için arka planı blur yapma */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Yarı saydam beyaz sınır */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+  padding: 20px; /* İçerik etrafındaki boşluk */
+}
+.loginHead > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.loginHead > form > input {
+  border-radius: 6px;
+  margin-bottom: 10px;
+  padding: 5px 2px;
+  border: 1px solid #f17102;
+  background-color: antiquewhite;
+}
+.loginHead > form > h3 {
+  margin-bottom: 10px;
+}
+.loginHead > form > button {
+  padding: 5px 2px;
+  width: 145px;
+  border-radius: 6px;
+  border: 1px solid #f17102;
+}

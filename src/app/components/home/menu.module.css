@@ -1,0 +1,183 @@
+@font-face {
+  font-family: "HKGrotesk";
+  src: url("../../../../public/static/HankenGrotesk-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "HKGrotesktBold";
+  src: url("../../../../public/static/HankenGrotesk-SemiBold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "HKGroteskthin";
+  src: url("../../../../public/static/HankenGrotesk-Thin.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+.boxHead {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.box {
+  background-color: #e3f5ff;
+  width: 202px;
+  height: 112px;
+  padding: 24px 33px 24px 21px;
+  gap: 0px;
+  border-radius: 16px;
+  opacity: 0px;
+  margin-top: 20px;
+  margin-bottom: 55px;
+}
+.boxtwo {
+  background-color: #e5ecf6;
+  width: 202px;
+  height: 112px;
+  padding: 24px 33px 24px 21px;
+  gap: 0px;
+  border-radius: 16px;
+  opacity: 0px;
+  margin-top: 20px;
+  margin-bottom: 55px;
+}
+
+.boxheader {
+  font-family: "HKGrotesk";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: left;
+}
+.boxheaderTwo {
+  font-family: "HKGrotesktBold";
+  font-size: 18px;
+  line-height: 20px;
+  text-align: left;
+}
+
+.box:not(:last-child) {
+  margin-right: 28px;
+}
+
+.graphic {
+  width: 892px;
+
+  top: 484px;
+  left: 274px;
+  padding: 20px 16px 24px 5px;
+  gap: 0px;
+  border-radius: 16px;
+  opacity: 0px;
+  background-color: #fff;
+}
+.table {
+  position: relative;
+  width: 892px;
+
+  padding: 10px 31px 60px 40px;
+  margin: 39px 0px;
+  border-radius: 16px;
+  opacity: 0px;
+  background-color: #fff;
+}
+.table h3 {
+  font-family: "HKGrotesktBold";
+  font-size: 20.11px;
+  font-weight: 600;
+  line-height: 24.14px;
+  text-align: left;
+  margin: 35px 0px 18px;
+  color: #404040;
+}
+.th {
+  padding: 0px 0px 20px;
+  font-family: "HKGrotesktBold";
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 15.73px;
+  color: #000000;
+}
+.th:first-child {
+  text-align: left;
+}
+.actionsClose {
+  position: absolute;
+  padding: 6px;
+  top: 7px;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0px 2px 4px 0px #00000026;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "HKGrotesktBold";
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 13px;
+  text-align: left;
+  color: #404040;
+}
+.actionsOpen {
+  color: #4359ca;
+}
+.actionsOpenIcon {
+  display: flex;
+  color: #4359ca;
+}
+.actionsCloseIcon {
+  display: flex;
+  color: #404040;
+}
+.tr {
+  position: relative;
+  height: 50px;
+  border-bottom: 1px solid #e3f5ff;
+  text-align: center;
+}
+
+.trDropdown > div {
+  text-align: start;
+  margin: 5px 0px 0px 0px;
+  font-family: "HKGrotesktBold";
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 10.4px;
+  text-align: left;
+
+  padding: 3px 3px;
+  /* dropdown */
+}
+
+.tr > td:not(:first-child) {
+  font-family: "HKGrotesk";
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 16.8px;
+  text-align: center;
+  color: #636363;
+}
+
+.tr > td:first-child {
+  font-family: "HKGrotesk";
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 16.8px;
+  text-align: left;
+  color: #636363;
+}
+
+.rotate {
+  margin-left: 5px;
+  transform: rotateX(180deg);
+  /* Dönüşümü yumuşatmak için geçiş efekti */
+}
+.notRotate {
+  margin-left: 5px;
+}
+
+.ind {
+  z-index: 999;
+}

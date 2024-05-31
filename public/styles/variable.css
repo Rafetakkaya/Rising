@@ -1,0 +1,8 @@
+:root{
+  --header-color:background-color: #78B6FF4D;
+  --link-bottom:color:#0C6DFC;
+  --box-one:bakgroung-color:#E3F5FF;
+  --box-two:bakgroung-color:#E5ECF6;
+  --grid-t-c: minmax(auto, 350px) minmax(120px, auto);
+  --grid-t-r: auto auto auto auto;
+}

@@ -1,0 +1,22 @@
+.banner {
+  background-color: #78b6ff4d;
+  width: 811px;
+  /* font-family: HK Grotesk; */
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.8px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 22px;
+  margin: 21px;
+}
+.banner > h4 {
+  margin: 0;
+}
+
+.Image {
+  margin: 0;
+}

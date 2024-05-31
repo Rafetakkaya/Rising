@@ -139,11 +139,11 @@ const Menu: React.FC = () => {
             </div>
             <div className={style.boxThree}>
               <h4 className={style.boxheaderthree}>Total Usage Data</h4>
-              <h3> {packageContent?.totalDataUsage && `${formatNumber(packageContent.totalDataUsage)} GB`}</h3>
+              <h3> {packageContent?.totalDataUsage && `${(packageContent.totalDataUsage)} GB`}</h3>
             </div>
             <div className={style.boxFour}>
               <h4 className={style.boxheaderFour}>Daily Usage Data</h4>
-              <h3>{packageContent?.dailyUsage && `${formatNumber(packageContent.dailyUsage)} GB`}</h3>
+              <h3>{packageContent?.dailyUsage && `${(packageContent.dailyUsage)} GB`}</h3>
             </div>
           </div>
           <div className={style.graphic}>

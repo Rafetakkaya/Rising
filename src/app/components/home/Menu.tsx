@@ -19,7 +19,13 @@ interface TableData {
   data: TableRow[];
 }
 
-
+interface PackageContent {
+  expireTime: string;
+  lastChargeAmount: string;
+  lastCharge: string;
+  totalDataUsage: string;
+  dailyUsage: string;
+}
 
 const rowDropdowns: { [key: number]: boolean } = {
   1: true,
@@ -29,10 +35,9 @@ const rowDropdowns: { [key: number]: boolean } = {
 
 const Menu: React.FC = () => {
   
-  const [tableData, setTableData] = useState<TableData>({ data: [] });
+  const [tableData, setTableData] = useState<TableData | null>(null);
+  const [packageContent, setPackageContent] = useState<PackageContent | null>(null);
 
-
-  const [packageContent, setPackageContent] = useState<any>(null);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 

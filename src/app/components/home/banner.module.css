@@ -1,3 +1,22 @@
+@font-face {
+  font-family: "HKGrotesktBold";
+  src: url("../../../../public/static/HankenGrotesk-SemiBold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "HKGroteskthin";
+  src: url("../../../../public/static/HankenGrotesk-Thin.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "HKGroteskRegular";
+  src: url("../../../../public/static/HankenGrotesk-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .banner {
   background-color: #78b6ff4d;
   width: 811px;
@@ -13,8 +32,23 @@
   padding: 16px 22px;
   margin: 21px;
 }
-.banner > h4 {
+.bannertext {
   margin: 0;
+  font-family: "HKGroteskRegular";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.8px;
+  text-align: left;
+}
+.bannerfree {
+  text-decoration: underline;
+  margin: 0;
+  margin-left: 5px;
+  font-family: "HKGroteskRegular";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.8px;
+  text-align: left;
 }
 
 .Image {

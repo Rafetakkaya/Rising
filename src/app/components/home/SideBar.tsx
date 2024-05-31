@@ -5,7 +5,7 @@ import logo from "../../../../public/assets/img/Rising.png";
 import card from "../../../../public/assets/img/card.svg";
 import person from "../../../../public/assets/img/default.svg";
 import vector from "../../../../public/assets/img/Vector.svg";
-import exit from "../../../../public/assets/img/logo.svg";
+import exit from "../../../../public/assets/img/logout.svg";
 import Image from "next/image";
 
 const images = [vector, card, person, exit];

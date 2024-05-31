@@ -12,6 +12,7 @@ const Menu: React.FC = () => {
   const [tableData, setTableData] = useState<any[]>([]);
   const [packageContent, setPackageContent] = useState<any>(null); // State for package content
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +31,8 @@ const Menu: React.FC = () => {
         });
       } catch (error) {
         console.error("Error fetching table data:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -40,21 +43,18 @@ const Menu: React.FC = () => {
             Authorization: `${localStorage.getItem("jwt")}`,
           },
         });
-        console.log("aaaaaa", response.data);
+        console.log("Package Info:", response.data);
         setPackageContent(response.data);
       } catch (error) {
         console.error("Error fetching package info:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchData();
     fetchPackageInfo(); // Call the package info API
   }, []);
-
-  //  const handleActionClick = (e: React.MouseEvent<HTMLTableCellElement>) => {
-  //   e.stopPropagation(); // Stop propagation to prevent closing when clicking inside the dropdown
-  //   setDropdownVisible(!dropdownVisible);
-  // };
 
   const handleDropdownClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation(); // Stop propagation to prevent closing when clicking inside the dropdown
@@ -95,93 +95,105 @@ const Menu: React.FC = () => {
     }
   };
 
+  const formatNumber = (number: number) => {
+    const formattedNumber = (number / 1000).toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return formattedNumber;
+  };
+
   return (
     <div>
-      <div className={style.boxHead}>
-        <div className={style.box}>
-          <h4 className={style.boxheader}>Subscription expires on</h4>
-          {packageContent?.expireTime}
-        </div>
-        <div className={style.boxtwo}>
-          <h4 className={style.boxheader}>Last charge</h4>
-          {packageContent?.lastChargeAmount} {packageContent?.lastCharge} 
-        </div>
-        <div className={style.box}>
-     
-          <h4 className={style.boxheaderTwo}>Total Usage Data</h4>
-          {packageContent?.totalDataUsage} GB
-        </div>
-        <div className={style.boxtwo}>
-         
-          <h4 className={style.boxheaderTwo}>Daily Usage Data</h4>
-          {packageContent?.dailyUsage}GB
-        </div>
-      </div>
-      <div className={style.graphic}>
-        <Graphics />
-      </div>
+      {isLoading ? (
+        <p></p>
+      ) : (
+        <>
+          <div className={style.boxHead}>
+            <div className={style.box}>
+              <h4 className={style.boxheader}>Subscription expires on</h4>
+              <p className={style.expiteTime}>{packageContent?.expireTime}</p>
+            </div>
+            <div className={style.boxtwo}>
+              <h4 className={style.boxheader}>Last charge</h4>
+              <div>
+                <span className={style.percent}> {packageContent?.lastChargeAmount} </span>
+                <span className={style.packageContent}>{packageContent?.lastCharge} </span>
+              </div>
+            </div>
+            <div className={style.boxThree}>
+              <h4 className={style.boxheaderthree}>Total Usage Data</h4>
+             <h3> {packageContent?.totalDataUsage && `${formatNumber(packageContent.totalDataUsage)} GB`}</h3>
+            </div>
+            <div className={style.boxFour}>
+              <h4 className={style.boxheaderFour}>Daily Usage Data</h4>
+      <h3>{packageContent?.dailyUsage && `${formatNumber(packageContent.dailyUsage)} GB`}</h3>
+            </div>
+          </div>
+          <div className={style.graphic}>
+            <Graphics />
+          </div>
 
-      <div className={style.table}>
-        {paragraphs.transcactionHistory.map((item, index) => (
-          <h3 key={index}>{item.text}</h3>
-        ))}
-        {tableData && tableData.data ? (
-          <table style={{ borderCollapse: "collapse", width: "100%" }}>
-            <thead>
-              <tr>
-                {paragraphs.transactions.table.map((item, index) => (
-                  <th key={index} className={style.th}>
-                    {item.text}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className={style.tableMain}>
-              {tableData.data.map((row, rowIndex) => (
-                <tr key={rowIndex} className={style.tr}>
-                  {Object.entries(row).map(([key, value], cellIndex) => (
-                    <td key={cellIndex}>
-                      {key === "date"
-                        ? new Date(value).toLocaleDateString("en-GB", {
-                            day: "2-digit",
-                            month: "short",
-                            year: "numeric",
-                          })
-                        : value}
-                    </td>
-                  ))}
-                  <td className={`${style.actionsClose} ${rowDropdowns[rowIndex] ? style.ind : ""}`} onClick={(e) => handleActionClick(e, rowIndex)}>
-                    <div className={rowDropdowns[rowIndex] ? style.actionsOpenIcon : style.actionsCloseIcon}>
-                      Actions
-                      <div className={rowDropdowns[rowIndex] ? style.rotate : style.notRotate}>
-                        <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M11 1L6.88388 5.11612C6.39573 5.60427 5.60427 5.60427 5.11612 5.11612L1 1"
-                            stroke={rowDropdowns[rowIndex] ? "#4359CA" : "black"}
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    {rowDropdowns[rowIndex] && (
-                      <div className={style.trDropdown} onClick={handleDropdownClick}>
-                        {paragraphs.actions.navigator.map((item, index) => (
-                          <div onClick={(e) => handleDropdownChange(e, rowIndex)} key={index}>
-                            {item.text}
+          <div className={style.table}>
+            {paragraphs.transcactionHistory.map((item, index) => (
+              <h3 key={index}>{item.text}</h3>
+            ))}
+            {tableData && tableData.data ? (
+              <table style={{ borderCollapse: "collapse", width: "100%" }}>
+                <thead>
+                  <tr>
+                    {paragraphs.transactions.table.map((item, index) => (
+                      <th key={index} className={style.th}>
+                        {item.text}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className={style.tableMain}>
+                  {tableData.data.map((row, rowIndex) => (
+                    <tr key={rowIndex} className={style.tr}>
+                      {Object.entries(row).map(([key, value], cellIndex) => (
+                        <td key={cellIndex}>
+                          {key === "date"
+                            ? new Date(value).toLocaleDateString("en-GB", {
+                                day: "2-digit",
+                                month: "short",
+                                year: "numeric",
+                              })
+                            : value}
+                        </td>
+                      ))}
+                      <td className={`${style.actionsClose} ${rowDropdowns[rowIndex] ? style.ind : ""}`} onClick={(e) => handleActionClick(e, rowIndex)}>
+                        <div className={rowDropdowns[rowIndex] ? style.actionsOpenIcon : style.actionsCloseIcon}>
+                          Actions
+                          <div className={rowDropdowns[rowIndex] ? style.rotate : style.notRotate}>
+                            <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M11 1L6.88388 5.11612C6.39573 5.60427 5.60427 5.60427 5.11612 5.11612L1 1"
+                                stroke={rowDropdowns[rowIndex] ? "#4359CA" : "black"}
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                              />
+                            </svg>
                           </div>
-                        ))}
-                      </div>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          <p>Loading...</p>
-        )}
-      </div>
+                        </div>
+                        {rowDropdowns[rowIndex] && (
+                          <div className={style.trDropdown} onClick={handleDropdownClick}>
+                            {paragraphs.actions.navigator.map((item, index) => (
+                              <div onClick={(e) => handleDropdownChange(e, rowIndex)} key={index}>
+                                {item.text}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <p>Loading...</p>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -7,7 +7,11 @@ import close from "../../../../public/assets/img/close.svg";
 export default function Banner() {
   return (
     <div className={style.banner}>
-      <h4>{paragraphs.header[0]?.text}</h4>
+      <div>
+
+      <span className={style.bannertext}>{paragraphs.header[0]?.text}</span>
+      <span className={style.bannerfree}>{paragraphs.header[1]?.free}</span>
+      </div>
       <Image className={style.Image} src={close} alt={"close"}  />
     </div>
   );

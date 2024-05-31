@@ -7,7 +7,7 @@ import style from "./index.module.css";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAtom } from "jotai";
-import { jwtAtom } from "../../../utils/atoms";
+import { jwtAtom } from "./utils/atoms";
 import { useMutation } from "react-query";
 import { useRouter } from "next/navigation"; // Ensure this is the correct import
 

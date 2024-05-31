@@ -21,46 +21,108 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-top: 42px;
 }
 .box {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
   background-color: #e3f5ff;
   width: 202px;
   height: 112px;
-  padding: 24px 33px 24px 21px;
+  padding: 24px 19px 24px 19px;
   gap: 0px;
   border-radius: 16px;
   opacity: 0px;
   margin-top: 20px;
   margin-bottom: 55px;
+  margin-left: 0px;
 }
 .boxtwo {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
   background-color: #e5ecf6;
   width: 202px;
   height: 112px;
-  padding: 24px 33px 24px 21px;
+  padding: 24px 19px 24px 19px;
   gap: 0px;
   border-radius: 16px;
   opacity: 0px;
   margin-top: 20px;
   margin-bottom: 55px;
 }
+.boxThree {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  background-color: #e3f5ff;
+  width: 202px;
+  height: 112px;
+  padding: 24px 19px 24px 19px;
+  gap: 0px;
+  border-radius: 16px;
+  opacity: 0px;
+  margin-top: 20px;
+  margin-bottom: 55px;
+}
+.boxThree > .boxheaderthree {
+  line-height: 20px;
+  text-align: left;
+  color: #1c1c1c;
+  margin: 0;
+}
+.boxThree > h3 {
+  margin: 0;
+  color: #1c1c1c;
+  font-size: 24px;
+}
 
+.boxFour > h3 {
+  margin: 0;
+  color: #1c1c1c;
+  font-size: 24px;
+}
+.boxFour > .boxheaderFour {
+  margin: 0;
+}
 .boxheader {
   font-family: "HKGrotesk";
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
   text-align: left;
+  margin: 0px;
+}
+.boxheaderThree {
+  font-family: "HKGrotesktBold";
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: left;
+  margin: 0px;
 }
 .boxheaderTwo {
   font-family: "HKGrotesktBold";
   font-size: 18px;
   line-height: 20px;
   text-align: left;
+  margin: 0px;
 }
-
-.box:not(:last-child) {
-  margin-right: 28px;
+.boxFour {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  background-color: #e5ecf6;
+  width: 202px;
+  height: 112px;
+  padding: 24px 19px 24px 19px;
+  gap: 0px;
+  border-radius: 16px;
+  opacity: 0px;
+  margin-top: 20px;
+  margin-bottom: 55px;
+  margin-right: 0px;
 }
 
 .graphic {
@@ -180,4 +242,29 @@
 
 .ind {
   z-index: 999;
+}
+
+.percent {
+  font-family: "HKGrotesk";
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 36px;
+  text-align: left;
+}
+.packageContent {
+  font-family: "HKGrotesk";
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 36px;
+  text-align: left;
+  color: #1c1c1c;
+}
+
+.expiteTime {
+  font-family: "HKGrotesk";
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 36px;
+  text-align: left;
+  margin: 0;
 }

@@ -4,15 +4,12 @@ import axios from "axios";
 import style from "./menu.module.css";
 import { paragraphs } from "@/app/constant/constant";
 import Graphics from "./Graphics";
+
+
 interface TableRow {
   ipcount: number;
-
+  // Diğer özellikler...
 }
-
-interface TableData {
-  data: TableRow[];
-}
-
 
 
 
@@ -24,7 +21,8 @@ const rowDropdowns: { [key: number]: boolean } = {
 
 const Menu: React.FC = () => {
   
-  const [tableData, setTableData] = useState<TableData>({ data: [] });
+  const [tableData, setTableData] = useState<TableRow[]>([]);
+
 
   const [packageContent, setPackageContent] = useState<any>(null);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
@@ -71,8 +69,8 @@ const Menu: React.FC = () => {
   
   const handleDropdownChange = (e: React.ChangeEvent<HTMLSelectElement>, rowIndex: number) => {
     const { value } = e.target;
-    if (Array.isArray(tableData.data) && tableData.data.length > 0) {
-      const ipcount = tableData.data[rowIndex].ipcount;
+    if (Array.isArray(tableData) && tableData.length > 0) {
+      const ipcount = tableData[rowIndex].ipcount;
       console.log(`Number of IP :`, ipcount);
     } else {
       console.error("tableData is not iterable or empty.");

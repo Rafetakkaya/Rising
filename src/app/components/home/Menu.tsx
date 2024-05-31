@@ -4,9 +4,24 @@ import axios from "axios";
 import style from "./menu.module.css";
 import { paragraphs } from "@/app/constant/constant";
 import Graphics from "./Graphics";
+interface TableRow {
+  ipcount: number;
+  // Diğer alanlar da buraya eklenebilir
+}
+
+interface TableData {
+  data: TableRow[];
+}
+
+const rowDropdowns: { [key: number]: boolean } = {
+  1: true,
+  2: false,
+  3: true,
+};
 
 const Menu: React.FC = () => {
-  const [tableData, setTableData] = useState<any[]>([]);
+  const [tableData, setTableData] = useState<TableData | null>(null);
+
   const [packageContent, setPackageContent] = useState<any>(null);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -49,23 +64,34 @@ const Menu: React.FC = () => {
   const handleDropdownClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation(); 
   };
+  
   const handleDropdownChange = (e: React.ChangeEvent<HTMLSelectElement>, rowIndex: number) => {
     const { value } = e.target;
-    if (Array.isArray(tableData.data) && tableData.data.length > 0) {
+    if (tableData && Array.isArray(tableData.data) && tableData.data.length > 0) {
       const ipcount = tableData.data[rowIndex].ipcount;
       console.log(`Number of IP :`, ipcount);
     } else {
       console.error("tableData is not iterable or empty.");
     }
   };
+  
   const [rowDropdowns, setRowDropdowns] = useState<{ [key: number]: boolean }>({});
   const handleActionClick = (e: React.MouseEvent<HTMLTableCellElement>, rowIndex: number) => {
     e.stopPropagation();
     const isDropdownOpen = rowDropdowns[rowIndex];
+   
+
+
     const updatedRowDropdowns = Object.keys(rowDropdowns).reduce((acc, key) => {
-      acc[key] = false;
+      acc[Number(key)] = false; // key'i number türüne dönüştür
       return acc;
     }, {} as { [key: number]: boolean });
+    
+
+
+
+
+
     if (isDropdownOpen) {
       setRowDropdowns(updatedRowDropdowns);
     } else {
@@ -155,7 +181,7 @@ const Menu: React.FC = () => {
                         {rowDropdowns[rowIndex] && (
                           <div className={style.trDropdown} onClick={handleDropdownClick}>
                             {paragraphs.actions.navigator.map((item, index) => (
-                              <div onClick={(e) => handleDropdownChange(e, rowIndex)} key={index}>
+                              <div onClick={(e:any) => handleDropdownChange(e, rowIndex)} key={index}>
                                 {item.text}
                               </div>
                             ))}

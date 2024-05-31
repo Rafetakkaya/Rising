@@ -50,7 +50,11 @@
   line-height: 16.8px;
   text-align: left;
 }
-
 .Image {
   margin: 0;
+}
+.bannerMain {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
 }

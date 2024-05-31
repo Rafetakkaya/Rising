@@ -7,8 +7,7 @@ import close from "../../../../public/assets/img/close.svg";
 export default function Banner() {
   return (
     <div className={style.banner}>
-      <div>
-
+      <div className={style.bannerMain}>
       <span className={style.bannertext}>{paragraphs.header[0]?.text}</span>
       <span className={style.bannerfree}>{paragraphs.header[1]?.free}</span>
       </div>

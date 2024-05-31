@@ -3,14 +3,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import style from "./menu.module.css";
 import { paragraphs } from "@/app/constant/constant";
-import close from "../../../../public/assets/img/arrow.svg";
-
-import FilledLineChart from "./Graphics";
 import Graphics from "./Graphics";
 
 const Menu: React.FC = () => {
   const [tableData, setTableData] = useState<any[]>([]);
-  const [packageContent, setPackageContent] = useState<any>(null); // State for package content
+  const [packageContent, setPackageContent] = useState<any>(null);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -22,13 +19,8 @@ const Menu: React.FC = () => {
             Authorization: `${localStorage.getItem("jwt")}`,
           },
         });
-        console.log("Table Data:", response.data); // Log the fetched data
         setTableData(response.data);
-
-        // Log the ipcount for each row
-        response.data.data.forEach((row: any, index: number) => {
-          console.log(`Row ${index} Number of IP : `, row.ipcount);
-        });
+        response.data.data.forEach((row: any, index: number) => {});
       } catch (error) {
         console.error("Error fetching table data:", error);
       } finally {
@@ -43,7 +35,6 @@ const Menu: React.FC = () => {
             Authorization: `${localStorage.getItem("jwt")}`,
           },
         });
-        console.log("Package Info:", response.data);
         setPackageContent(response.data);
       } catch (error) {
         console.error("Error fetching package info:", error);
@@ -51,52 +42,39 @@ const Menu: React.FC = () => {
         setIsLoading(false);
       }
     };
-
     fetchData();
-    fetchPackageInfo(); // Call the package info API
+    fetchPackageInfo();
   }, []);
 
   const handleDropdownClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation(); // Stop propagation to prevent closing when clicking inside the dropdown
+    e.stopPropagation(); 
   };
-
   const handleDropdownChange = (e: React.ChangeEvent<HTMLSelectElement>, rowIndex: number) => {
     const { value } = e.target;
-
     if (Array.isArray(tableData.data) && tableData.data.length > 0) {
-      // Log the ipcount for the specific row
       const ipcount = tableData.data[rowIndex].ipcount;
-      console.log(`IP Count for row ${rowIndex}:`, ipcount);
+      console.log(`Number of IP :`, ipcount);
     } else {
       console.error("tableData is not iterable or empty.");
     }
   };
-
   const [rowDropdowns, setRowDropdowns] = useState<{ [key: number]: boolean }>({});
-
   const handleActionClick = (e: React.MouseEvent<HTMLTableCellElement>, rowIndex: number) => {
-    e.stopPropagation(); // Stop propagation to prevent closing when clicking inside the dropdown
-
-    const isDropdownOpen = rowDropdowns[rowIndex]; // Tıklanan dropdown'un durumunu al
-
-    // Tüm dropdownları kapat
+    e.stopPropagation();
+    const isDropdownOpen = rowDropdowns[rowIndex];
     const updatedRowDropdowns = Object.keys(rowDropdowns).reduce((acc, key) => {
       acc[key] = false;
       return acc;
     }, {} as { [key: number]: boolean });
-
-    // Eğer tıklanan dropdown açıksa, sadece onu kapat
     if (isDropdownOpen) {
       setRowDropdowns(updatedRowDropdowns);
     } else {
-      // Eğer tıklanan dropdown kapalıysa, sadece onu aç
       updatedRowDropdowns[rowIndex] = true;
       setRowDropdowns(updatedRowDropdowns);
     }
   };
-
   const formatNumber = (number: number) => {
-    const formattedNumber = (number / 1000).toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const formattedNumber = (number / 1000).toFixed(3).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     return formattedNumber;
   };
 
@@ -120,11 +98,11 @@ const Menu: React.FC = () => {
             </div>
             <div className={style.boxThree}>
               <h4 className={style.boxheaderthree}>Total Usage Data</h4>
-             <h3> {packageContent?.totalDataUsage && `${formatNumber(packageContent.totalDataUsage)} GB`}</h3>
+              <h3> {packageContent?.totalDataUsage && `${formatNumber(packageContent.totalDataUsage)} GB`}</h3>
             </div>
             <div className={style.boxFour}>
               <h4 className={style.boxheaderFour}>Daily Usage Data</h4>
-      <h3>{packageContent?.dailyUsage && `${formatNumber(packageContent.dailyUsage)} GB`}</h3>
+              <h3>{packageContent?.dailyUsage && `${formatNumber(packageContent.dailyUsage)} GB`}</h3>
             </div>
           </div>
           <div className={style.graphic}>

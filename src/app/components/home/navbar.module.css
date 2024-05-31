@@ -23,9 +23,7 @@
   height: 30px;
 }
 
-.navbar {
-  /* Your existing navbar styles */
-}
+
 
 .navList {
   list-style: none;
@@ -41,10 +39,10 @@
 }
 
 .navItem:hover {
-  color: #0c6dfc; /* Optional hover color */
+  color: #0c6dfc; 
 }
 
 .selected {
-  color: #0c6dfc; /* Selected color */
-  border-bottom: 2px solid #007bff; /* Border bottom for selected item */
+  color: #0c6dfc;
+  border-bottom: 2px solid #007bff; 
 }

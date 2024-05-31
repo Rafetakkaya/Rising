@@ -7,9 +7,11 @@ import style from "./index.module.css";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAtom } from "jotai";
-import { jwtAtom } from "./utils/atoms";
+import { ToastContainer, toast } from "react-toastify";
 import { useMutation } from "react-query";
-import { useRouter } from "next/navigation"; // Ensure this is the correct import
+import { useRouter } from "next/navigation"; 
+import { jwtAtom } from "../utils/atoms";
+import "react-toastify/dist/ReactToastify.css"
 
 const schema = z.object({
   username: z.string().min(4),
@@ -44,7 +46,11 @@ const Login: React.FC = () => {
         });
         router.push("/");
       },
+      
       onError: (error: any) => {
+        toast.error(
+          error.response.data.message || "Geçerli Bilgi Giriniz !!!"
+        )
         console.log(error);
       },
     }
@@ -59,9 +65,13 @@ const Login: React.FC = () => {
     if (token) {
       router.push("/");
     }
-  }, [router]);
+   
+  }, [router,jwt]);
 
   return (
+    <>
+
+    <ToastContainer/>
     <div className={style.login}>
       <div className={style.loginHead}>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -71,9 +81,11 @@ const Login: React.FC = () => {
           <button type="submit">Login</button>
           {errors.username && <p>{errors.username.message}</p>}
           {errors.password && <p>{errors.password.message}</p>}
+       
         </form>
       </div>
     </div>
+    </>
   );
 };
 

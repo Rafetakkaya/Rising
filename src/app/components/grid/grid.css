@@ -2,10 +2,10 @@
   display: grid;
   height: 100vh;
 
-  /* max-width: 1440px; */
+
   grid-template-rows: auto auto 1fr;
   grid-template-columns: minmax(60px, 120px) minmax(120px, auto);
-  /* grid-gap: var(--grid-gap); */
+
   grid-template-areas:
     "aside header"
     "aside  nav"

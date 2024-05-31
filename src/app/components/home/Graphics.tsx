@@ -1,9 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import ApexCharts from "apexcharts";
-
 const chartData = {
   labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-  values: [1.1, 2, 5, 1.3, 3.1, 5.5, 8.8], // Örnek veri değerleri
+  values: [1.1, 2, 5, 1.3, 3.1, 5.5, 8.8], 
 };
 const getChartOptions = (data: any) => {
   const labelColor = "#9aa0ac";
@@ -22,7 +21,6 @@ const getChartOptions = (data: any) => {
       fontFamily: "inherit",
       type: "area",
       height: 350,
-      // width: 500,
       toolbar: {
         show: false,
       },
@@ -57,9 +55,6 @@ const getChartOptions = (data: any) => {
         style: {
           colors: labelColor,
           fontSize: "11px",      
-
-   
-              
         },
       },
       crosshairs: {

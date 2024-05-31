@@ -7,13 +7,13 @@
 .loginHead {
   width: 300px;
   height: 200px;
-  background: rgba(241, 113, 2, 0.2); /* Yarı saydam beyaz */
-  border-radius: 10px; /* Köşeleri yuvarlama */
-  backdrop-filter: blur(10px); /* Arka planı blur yapma */
-  -webkit-backdrop-filter: blur(10px); /* Safari için arka planı blur yapma */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Yarı saydam beyaz sınır */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
-  padding: 20px; /* İçerik etrafındaki boşluk */
+  background: rgba(241, 113, 2, 0.2);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 .loginHead > form {
   display: flex;

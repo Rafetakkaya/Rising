@@ -1,4 +1,4 @@
-"use client"; // This line ensures the component is treated as a Client Component
+"use client"; 
 import React, { useState } from "react";
 import styles from "./navbar.module.css";
 import { paragraphs } from "@/app/constant/constant";
@@ -6,7 +6,7 @@ import { paragraphs } from "@/app/constant/constant";
 export default function Navbar() {
   const [selectedIndex, setSelectedIndex] = useState(1);
 
-  const handleNavItemClick = (index) => {
+  const handleNavItemClick = (index:any) => {
     setSelectedIndex(index);
   };
 

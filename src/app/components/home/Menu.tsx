@@ -82,13 +82,15 @@ const Menu: React.FC = () => {
   
   const handleDropdownChange = (e: React.ChangeEvent<HTMLSelectElement>, rowIndex: number) => {
     const { value } = e.target;
-    if (Array.isArray(tableData) && tableData.length > 0) {
-      const ipcount = tableData[rowIndex].ipcount;
+    if (tableData && tableData.data && tableData.data.length > 0) {
+      const ipcount = tableData?.data[rowIndex].ipcount;
       console.log(`Number of IP :`, ipcount);
     } else {
       console.error("tableData is not iterable or empty.");
     }
+    
   };
+  
   
   const [rowDropdowns, setRowDropdowns] = useState<{ [key: number]: boolean }>({});
   const handleActionClick = (e: React.MouseEvent<HTMLTableCellElement>, rowIndex: number) => {
